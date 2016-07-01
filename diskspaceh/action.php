@@ -3,11 +3,14 @@
 #################################################################################
 ##  [Quick Box - action.php modified for quota systems use]
 #################################################################################
-# GitHub:   https://github.com/Swizards/QuickBox
-# Author:   Swizards.net https://swizards.net
-# URL:      https://plaza.quickbox.io
+# GITHUB REPOS
+# GitHub _ packages  :   https://github.com/QuickBox/quickbox_rutorrent-plugins
+# LOCAL REPOS
+# Local _ packages   :   ~/QuickBox/rtplugins
+# Author             :   QuickBox.IO
+# URL                :   https://plaza.quickbox.io
 #
-# QuickBox Copyright (C) 2016 Swizards.net
+# QuickBox Copyright (C) 2016 QuickBox.io
 # Licensed under GNU General Public License v3.0 GPL-3 (in short)
 #
 #   You may copy, distribute and modify the software as long as you track
