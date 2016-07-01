@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 
   require_once( '../../php/util.php' );
-  if (isset($quotaUser)) {
+  if (isset($quotaUser) && file_exists('/install/.quota.lock')) {
       $total = shell_exec("/usr/bin/sudo /usr/sbin/repquota -u / | /bin/grep ^".$quotaUser." | /usr/bin/awk '{printf $4*1024}'");
       $free = shell_exec("/usr/bin/sudo /usr/sbin/repquota -u / | /bin/grep ^".$quotaUser." | /usr/bin/awk '{printf ($4-$3)*1024}'");
       cachedEcho('{ "total": '.$total.', "free": '.$free.' }',"application/json");
