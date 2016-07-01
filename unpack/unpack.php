@@ -63,6 +63,7 @@ class rUnpack
 			}
 		}
 		$this->store();
+		$this->setHandlers();
 	}
 	public function get()
 	{
@@ -313,16 +314,16 @@ class rUnpack
         			$outPath.=addslash($label);
 	        	if($this->addName && ($name!=''))
 				$outPath.=addslash($name);
-				if($unpackToTemp)
-				{
-					$randTempDirectory = addslash(uniqid(getTempDirectory()."archive-"));
-					if( $unpack_debug_enabled ) 
-						toLog("Unpack: Unpack to temp enabled. Unpacking to " . $randTempDirectory);
-				}
-				else
-				{
-					$randTempDirectory = "";
-				}
+			if($unpackToTemp)
+			{
+				$randTempDirectory = addslash(uniqid(getTempDirectory()."archive-"));
+				if( $unpack_debug_enabled ) 
+					toLog("Unpack: Unpack to temp enabled. Unpacking to " . $randTempDirectory);
+			}
+			else
+			{
+				$randTempDirectory = "";
+			}
 	        	$commands[] = escapeshellarg($rootPath.'/plugins/unpack/un'.$mode.$postfix.'.sh')." ".
 				escapeshellarg($arh)." ".
 				escapeshellarg($basename)." ".
@@ -334,7 +335,7 @@ class rUnpack
 				$commands[] = 'rm -r "${dir}"';	
 			$task = new rTask( array
 			( 
-				'arg'=>call_user_func('end',explode('/',delslash($basename))),
+				'arg'=>call_user_func('getFileName',delslash($basename)),
 				'requester'=>'unpack',
 				'name'=>'unpack', 
 				'hash'=>$hash, 
@@ -400,7 +401,7 @@ class rUnpack
 					escapeshellarg($arh)." ".
 					escapeshellarg($filename)." ".
 					escapeshellarg(addslash($outPath));
-				$taskArgs['arg'] = call_user_func('end',explode('/',$filename));
+				$taskArgs['arg'] = call_user_func('getFileName',$filename);
 				$task = new rTask( $taskArgs );
 				$ret = $task->start($commands, 0);
 			}
@@ -471,7 +472,7 @@ class rUnpack
 							escapeshellarg($basename)." ".
 							escapeshellarg($outPath)." ".
 							escapeshellarg($pathToUnzip);
-						$taskArgs['arg'] = call_user_func('end',explode('/',delslash($basename)));
+						$taskArgs['arg'] = call_user_func('getFileName',delslash($basename));
 						$task = new rTask( $taskArgs );
 						$ret = $task->start($commands, 0);	
 					}
