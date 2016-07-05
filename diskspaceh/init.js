@@ -16,7 +16,7 @@ plugin.setValue = function( full, free )
 		if((free<plugin.notifySpaceLimit) && !plugin.noty)
 			plugin.noty = $.noty(
 			{
-				text: theUILang.diskNotification, 
+				text: theUILang.diskNotification,
 				layout : 'bottomLeft',
 				type: 'error',
 				timeout : false,
@@ -48,7 +48,7 @@ plugin.init = function()
 				timeout: theWebUI.settings["webui.reqtimeout"],
 			        async : true,
 			        cache: false,
-				url : "plugins/diskspace/action.php",
+				url : "plugins/diskspaceh/action.php",
 				dataType : "json",
 				cache: false,
 				success : function(data)
